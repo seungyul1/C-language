@@ -38,6 +38,8 @@ int main(){
     Enqueue(200);
     Enqueue(300);
     Print_Queue();
+    Clear_Queue();
+    Print_Queue();
 
     return 0;
 }
@@ -93,6 +95,9 @@ int Peak() {
 void Print_Queue(){
     int i;
     printf("Queue From Front -------> To Rear\n");
+    if(front == rear){
+        printf("Queue is Empty!!\n");
+    }
     for (i = front; i != rear; i = (i+1)%MAX_QUEUE_SIZE){
         printf("%d ", queue[i]);
     }
