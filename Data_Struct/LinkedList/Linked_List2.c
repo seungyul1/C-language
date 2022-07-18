@@ -1,3 +1,4 @@
+//https://sycho-lego.tistory.com/17
 //전역변수 버전
 
 #include <stdio.h>

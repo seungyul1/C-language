@@ -2,6 +2,8 @@
 //https://neohtux.tistory.com/51
 //https://ititit1.tistory.com/78
 //https://kirkim.github.io/c/2021/03/04/linked_list.html
+//https://blog.naver.com/PostView.naver?blogId=jwcwjung&logNo=222487705914&categoryNo=33&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search
+
 #include <stdio.h>
 #include <stdlib.h>
 
