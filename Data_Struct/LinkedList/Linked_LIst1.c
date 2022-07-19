@@ -69,7 +69,7 @@ void Delete_Node(LinkedList *lk, int n){
         node *prev = lk->head;  //더미 노드 가르킴!
 
         while (--n) 
-            curr = curr->next;  //n위치로 이동
+            prev = prev->next;  //n위치로 이동
         curr = prev->next;
         prev->next = curr->next;
         if ( n == LinkedList_Size(lk))  //맨 마지막 노드이면
@@ -94,20 +94,23 @@ void Delete_All(LinkedList *lk){
 void Search_Node(LinkedList *lk, int data){
     int idx=0;
     node *curr = lk->head->next;
-    while (curr != NULL){
-        idx++;
-        if(curr->data == data){
-            printf("리스트에서 %d 위치에 있습니다!\n",idx);
-            break;
+    if(curr != NULL) {
+        while (1){
+            idx++;
+            if(curr->data == data){
+                printf("리스트에서 %d 위치에 있습니다!\n",idx);
+                break;
+            }
+            curr = curr->next;
         }
-        curr = curr->next;
     }
-    printf("데이터가 리스트에 존재하지 않습니다.!!\n");
+    else 
+        printf("데이터가 리스트에 존재하지 않습니다.!!\n");
 }
 
 
 void Print_AllNode(LinkedList *lk){
-    node *curr = lk->head->next;
+    node *curr = lk->head;
 
     if(curr == NULL){
         puts("No DATA!\n");
@@ -133,6 +136,15 @@ int main(){
     Insert_Node(lk,2,40);
     Insert_Node(lk,2,50);
     Insert_Node(lk,2,60);
+    Print_AllNode(lk);
+
+    Delete_Node(lk, 2);
+    Print_AllNode(lk);
+    Delete_Node(lk, 3);
+    Print_AllNode(lk);
+
+    Search_Node(lk, 20);
+    Delete_All(lk);
     Print_AllNode(lk);
     return 0;
 }
