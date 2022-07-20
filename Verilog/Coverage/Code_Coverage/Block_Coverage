@@ -1,0 +1,28 @@
+//Block coverage is a basic code coverage mechanism that identifies which blocks in the code have been executed and which have not. 
+//Block coverage identifies whether test scenarios exercise the statements in a block.
+
+//What is a Block
+//  - block is a statement or sequence of statment
+//        - (begin...end)
+//        - do not contain flowbreak statement
+//        - flowbreak is alter normal execution 
+//	  	(ex. if, repeat, case, while ....)
+
+
+//Example
+		
+	always @ (in) begin						//<------ BLK1 begin
+		$display('TRUE');
+		if (in[1] == 1'b1)					
+			$display('IF1 TRUE');			//<------ BLK2
+		else begin							//<------ BLK1 end BLK3 begin
+			$display('IF1 FALSE');
+			$display('IF1 FALSE');
+		end									//<------ BLK3 end
+		$display('TRUE');					//<------ BLK4 begin
+		if (in[1] == 1'b1)					//<------ BLK4 end	
+			$display('IF2 TRUE');			//<------ BLK5 
+		$display('TRUE');
+	end
+		
+	 
