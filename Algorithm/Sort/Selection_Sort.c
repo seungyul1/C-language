@@ -19,7 +19,7 @@ void Selection_Sort(int arr[], int length) {
     int min_idx;
     for(int i=0; i<length; i++){
         min = arr[i];
-        //min_idx = 0;
+        min_idx = i;
         for(int j=i+1; j<length; j++){
             if(arr[j] < min) {
                 min = arr[j];
