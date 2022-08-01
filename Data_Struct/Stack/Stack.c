@@ -1,4 +1,5 @@
 //https://rpatm.tistory.com/40
+//원소의 삽입/삭제가 한쪽 끝에서만 발생하는 자료구조!
 #include <stdio.h>
 #define MAX_STACK_SIZE 100
 

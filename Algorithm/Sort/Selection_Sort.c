@@ -1,3 +1,7 @@
+//https://gmlwjd9405.github.io/2018/05/06/algorithm-selection-sort.html
+//https://ehpub.co.kr/2-3-%ec%84%a0%ed%83%9d-%ec%a0%95%eb%a0%acselection-sort/
+ //순차정렬과 차이점은 맨 앞의 원소를 최소값이 있는 위치로 설정한 후에 
+ //뒤에 원소들과 비교하여 더 작은 값을 발견하면 최소값의 위치를 바꾸는 거예요. 순차 정렬에서 원소를 교환했던 것과 다릅니다
 #include <stdio.h>
 
 void Selection_Sort(int arr[], int length);
