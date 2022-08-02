@@ -1,3 +1,5 @@
+//https://code-lab1.tistory.com/3?category=1213003
+//https://starfish22.tistory.com/22
 #include <stdio.h>
 
 void Partition(int arr[], int Left, int Right);

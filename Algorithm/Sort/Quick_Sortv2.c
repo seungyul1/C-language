@@ -8,7 +8,7 @@ void Quick_Sort(int arr[], int Start, int End);
 int main(){
     int arr[] = {3,5,1,10,8,4,9,2,6,7};
     
-    Quick_Sort(arr,0,9);
+    Quick_Sort(arr,0,9);    //시간복잡도 O(nlogn)
     Print_Array(arr,10);
     return 0;
 }
