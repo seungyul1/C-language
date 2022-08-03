@@ -8,7 +8,7 @@ void Print_Array(int arr[], int length);
 
 int main(){
     //int arr[] = {5,1,6,3,4,2,7};
-    int arr[] = {5,3,7,8,4,9,1,2};
+    int arr[] = {3,1,4,3,2};
     int length = sizeof(arr) / sizeof(int) ;
     
     Partition(arr,0,length-1);

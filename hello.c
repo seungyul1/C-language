@@ -1,60 +1,49 @@
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h> //malloc
 
-void Quick_Sort(int arr[], int Start, int End);
-void Swap(int *a, int *b);
-void Print_Array(int arr[], int length);
+void Merge_Sort(int arr[], int left, int right);
+void Merge(int arr[], int left, int mid, int right);
+int temp[8];
 
-int main(){
-	int N;
-	int *ptr;
 
-	scanf("%d",&N);
-	ptr = (int *)malloc(sizeof(int) * N);
+int main() {
 
-	for(int i=0; i<N; i++){
-		scanf("%d",&ptr[i]);
-	}
 
-	Quick_Sort(ptr, 0, N-1);
-	Print_Array(ptr, N);
-
-	free(ptr);
 	return 0;
 }
 
-void Print_Array(int arr[], int length){
-    for(int i=0; i <length; i++){
-        printf("%d\n", arr[i]);
-    }
-}
-void Swap(int *a, int *b){
-	int tmp = *a;
-	*a = *b;
-	*b = tmp;
+void Merge_Sort(int arr[], int left, int right){
+	int mid = (left + right) / 2;
+	if(left < right){
+		Merge_Sort(arr,left,mid);
+		Merge_Sort(arr,mid+1,right);
+		Merge(arr,left,mid,right);
+	}
 }
 
-void Quick_Sort(int arr[], int Start, int End){
-	int pivot = arr[(Start+End)/2];
-	int start = Start;
-	int end = End;
-	do {
-		while (arr[start] < pivot){
-			start++;
+void Merge(int arr[], int left, int mid, int right){
+	int left_idx = left;		//왼쪽 시작 인덱스
+	int right_idx = mid+1;		//오른쪽 시작 인덱스
+	int temp_idx = left;		//비교 후 처음부터 채워넣어야 함으로! 
+
+	//두 배열 비교 및 합병 시작
+	while (left_idx <= mid && right_idx <= right){
+		if(arr[left_idx] <= arr[right_idx]) {	//오른쪽값이 더 큰 경우
+			temp[temp_idx++] = arr[left_idx++];
+			if(left_idx == mid+1){
+				while (right_idx <= right){
+					temp[temp_idx++] = arr[right_idx++];
+				}
+			}
 		}
-		while (arr[end] > pivot){
-			end--;
+		else {									//왼쪽값이 더 큰 경우
+			temp[temp_idx++] = arr[right_idx++];
+			if(right_idx == right+1){
+				while (left_idx <= mid){
+					temp[temp_idx++] = arr[left_idx++];
+				}
+			}
 		}
-		if(start<=end){
-			Swap(&arr[start], &arr[end]);
-			start++;
-			end--;
-		}
-	} while(start <= end);
-	
-	if(Start < end)
-		Quick_Sort(arr,Start,end);
-	if(start < End)
-		Quick_Sort(arr,start,End);
+	}
+	for(int i=left; i<=right; i++)
+		arr[i] = temp[i];
 }
