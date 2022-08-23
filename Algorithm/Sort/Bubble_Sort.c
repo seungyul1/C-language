@@ -5,8 +5,8 @@ void Bubble_Sort(int *parr, int length);
 
 int main() {
 
-    int arr[10] = {9,4,3,10,5,8,7,6,2,1};
-
+    //int arr[10] = {9,4,3,10,5,8,7,6,2,1};
+    int arr[3] = {5,4,3};
     Bubble_Sort(arr, sizeof(arr)/sizeof(int));
 
     return 0;

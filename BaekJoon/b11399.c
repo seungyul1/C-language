@@ -1,62 +1,78 @@
 #include <stdio.h>
-void Quick_Sort(int arr[], int Left, int Right);
-void Swap(int *a, int *b);
+#include <stdlib.h>
+
+void Merge_Sort(int arr[],int left, int right);
+void Merge(int arr[],int left,int mid,int right);
+void Print_Array(int arr[], int length);
+int temp[1001];
 
 int main(){
     int N;
-    int arr[1000];
-    int tmp[1000] = {0};
-    int sum;
-
-
-
+    int *arr;
+    int sum[1001] = {0};
+    int ans=0;
     scanf("%d",&N);
-    for(int i=0; i<N; i++){
+
+    arr = (int *)malloc(sizeof(int)*N);
+    for(int i=0; i<N;i++){
         scanf("%d",&arr[i]);
     }
-    Quick_Sort(arr,0,N-1);
 
-
-    for(int j=0; j<N; j++){
-        if(j==0){
-            tmp[j] = arr[j];
-        }
-        else 
-            tmp[j] = arr[j] + tmp[j-1];
+    Merge_Sort(arr,0,N-1);  
+    Print_Array(arr,N); 
+    sum[0] = arr[0];
+    for(int z=1; z<N; z++){
+        sum[z] = sum[z-1] + arr[z];
     }
-
-    for(int z=0; z<N; z++){
-        sum += tmp[z];
+    for(int k=0; k<N; k++){
+        ans += sum[k];
     }
-
-    printf("%d\n",sum);
+    
+    printf("%d\n",ans);
+    free(arr);
     return 0;
 }
-void Swap(int *a, int *b){
-    int tmp = *a;
-    *a = *b;
-    *b = tmp;
+
+void Merge_Sort(int arr[],int left, int right){
+    int mid = (left + right) / 2;
+    if(left<right){
+        Merge_Sort(arr,left,mid);
+        Merge_Sort(arr,mid+1,right);
+        Merge(arr,left,mid,right);
+    }
 }
 
-void Quick_Sort(int arr[], int Left, int Right){
-    int pivot = arr[(Left + Right)/2];
-    int left = Left;
-    int right = Right;
+void Merge(int arr[],int left,int mid,int right){
+    int l_idx = left;
+    int r_idx = mid+1;
+    int tmp_idx = left;
 
-    do {
-        while (arr[left] < pivot)   //크면 멈춤
-            left++;
-        while (arr[right] > pivot)  //작으면 멈춤
-            right--;
-        if(left <= right){
-            Swap(&arr[left], &arr[right]);
-            left++;
-            right--;
-        }  
-    } while (left <= right);        //right가 left보다 작아지면 멈춤!
+    while (l_idx <= mid && r_idx <= right){
+        if(arr[l_idx] <= arr[r_idx]){
+            temp[tmp_idx++] = arr[l_idx++];
+            if(l_idx == mid + 1){
+                while (r_idx<=right)
+                    temp[tmp_idx++] = arr[r_idx++];
+            }
+        }
+        else {
+            temp[tmp_idx++] = arr[r_idx++];
+            if(r_idx == right+1){
+                while (l_idx<=mid)
+                    temp[tmp_idx++] = arr[l_idx++];
+              
+            }
+        }
+    }
 
-    if(right > Left)
-        Quick_Sort(arr,Left,right);
-    if(left < Right)
-        Quick_Sort(arr,left,Right);
+    for(int i=left; i <=right; i++){
+        arr[i] = temp[i];
+    }
+}
+
+void Print_Array(int arr[], int length){
+    for(int i=0; i<length; i++){
+        printf("%d ",arr[i]);
+    }
+    printf("\n");
 }
