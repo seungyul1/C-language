@@ -10,7 +10,7 @@ void Print_Array(int arr[], int length);
 int temp[10];
 
 int main() {
-    int arr[10] = {9,4,3,10,5,8,7,6,2,1};
+    int arr[10] = {338,304,619,95,343,496,489,116,98,127};
     printf("--------정렬 전---------\n");
     Print_Array(arr,10);
     Merge_Sort(arr,0,9);
@@ -25,6 +25,7 @@ void Print_Array(int arr[], int length){
     }
     printf("\n");
 }
+
 void Merge_Sort(int arr[], int left, int right){
 	int mid = (left + right) / 2;
 	if(left < right){
@@ -58,6 +59,7 @@ void Merge(int arr[], int left, int mid, int right){
 			}
 		}
 	}
+	
 	for(int i=left; i<=right; i++)
 		arr[i] = temp[i];
 }
