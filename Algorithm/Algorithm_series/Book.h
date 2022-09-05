@@ -24,5 +24,4 @@ int Book_CompareNum(Book *book,int num);
 
 Book *New_Nook(const char *title, const char *author, int num){
     Book *book = (Book *)malloc(sizeof(Book));
-    B
 }
